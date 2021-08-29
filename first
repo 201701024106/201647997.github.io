@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="password">
+    <span id="level"></span>
+    <div id="warn"></div>
+
+    <script>
+        var password = document.getElementById('password');
+        var level = document.getElementById('level');
+        var warn = document.getElementById('warn');
+
+
+        password.oninput = function () {
+            if (password.value.length < 6) {
+                warn.textContent = '输入的值不能小于6';
+            }
+            if (password.value.length > 12) {
+                warn.textContent = '输入的值不能大于12';
+            }
+            if ((password.value.length >= 6 && password.value.length <= 12) || password.value.length === 0) {
+                warn.textContent = '';
+            }
+
+
+
+            // var lev = 0;
+            // // 判断是否存在字母
+            // for (let i = 0; i < password.value.length; i++) {
+            //     if (password.value[i].toLowerCase() >= 'a' && password.value[i].toLowerCase() <= 'z') {
+            //         lev++;
+            //         break;
+            //     }
+            // }
+
+            // // 判断是否存在数字
+            // for (let i = 0; i < password.value.length; i++) {
+            //     if (password.value[i] >= 0 && password.value[i] <= 9) {
+            //         lev++;
+            //         break;
+            //     }
+            // }
+
+            // // 判断是否存在下划线
+            // for (let i = 0; i < password.value.length; i++) {
+            //     if (password.value[i] === '_') {
+            //         lev++;
+            //         break;
+            //     }
+            // }
+
+            // console.log(lev);
+
+
+            var a = 0, b = 0, c = 0;
+            for (let i = 0; i < password.value.length; i++) {
+                if (password.value[i].toLowerCase() >= 'a' && password.value[i].toLowerCase() <= 'z') {
+                    a = 1;
+                }
+
+                if (password.value[i] >= 0 && password.value[i] <= 9) {
+                    b = 1;
+                }
+
+                if (password.value[i] === '_' || password.value[i] === '.') {
+                    c = 1;
+                }
+            }
+
+            var lev = a + b + c;
+
+            switch (lev) {
+                case 1:
+                    level.textContent = '低';
+                    break;
+                case 2:
+                    level.textContent = '中';
+                    break;
+                case 3:
+                    level.textContent = '高';
+                    break;
+                default:
+                    level.textContent = '';
+                    break;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
